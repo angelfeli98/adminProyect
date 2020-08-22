@@ -15,16 +15,20 @@ export class SidebatService{
                 icon: 'mdi mdi-gauge',
                 submenu: [
                     {
-                        title: 'Main',
-                        url: '/'
-                    },
-                    {
                         title: 'Progress',
                         url: 'progress'
                     },
                     {
                         title: 'Chars',
                         url: 'charOne'
+                    },
+                    {
+                        title: 'Promises',
+                        url: 'promises'
+                    },
+                    {
+                        title: 'Rxjs',
+                        url: 'rxjs'
                     }
                 ]
             }

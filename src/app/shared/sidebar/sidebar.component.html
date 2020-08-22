@@ -20,14 +20,14 @@
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">PERSONAL</li>
                         <li *ngFor="let menu of getMenu">
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                            <a class="has-arrow waves-effect waves-dark" [routerLink]="['/']" aria-expanded="false">
                                 <i [ngClass]="menu.icon"></i>
                                 <span class="hide-menu">{{ menu.title }}
                                     <span class="label label-rouded label-themecolor pull-right">{{ menu.submenu.length }}</span>
                                 </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li *ngFor="let item of menu.submenu"><a routerLinkActive="active" routerLink="{{ item.url }}">{{ item.title }}</a></li>
+                                <li *ngFor="let item of menu.submenu"><a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="{{ item.url }}">{{ item.title }}</a></li>
                             </ul>
                         </li>
                     </ul>
