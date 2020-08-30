@@ -2,6 +2,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+// Guards
+import { UserGuard } from '../guards/user.guard';
+
 //Components
 import { PagesComponent } from './pages.component';
 import { DashBoardComponent } from './dashboard/dashboard.component';
@@ -10,6 +13,7 @@ import { CharOneComponent } from './char-one/char-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+
 
 const PAGES_ROUTES: Routes = [
     {
@@ -22,7 +26,8 @@ const PAGES_ROUTES: Routes = [
             { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account service' } },
             { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } }
-        ]
+        ],
+        canActivate: [ UserGuard ]
     }
 ]
 

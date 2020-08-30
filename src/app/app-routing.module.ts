@@ -9,7 +9,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 
 
 const APP_ROUTES: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+    { path: '', pathMatch: 'full', redirectTo: 'dashboard'},
     { path: '**', pathMatch: 'full', component: NotfoundComponent }
 ];
 

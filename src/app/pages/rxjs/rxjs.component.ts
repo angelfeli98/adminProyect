@@ -51,8 +51,7 @@ export class RxjsComponent implements OnInit, OnDestroy {
           i++;
 
           if(i == 4){
-            observer.complete()
-            interval
+            observer.complete();
             clearInterval(interval);
           }
           if(i == 2){

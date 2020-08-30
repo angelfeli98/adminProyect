@@ -4,34 +4,80 @@
         <div class="card-body">
             <form
                 [formGroup]="getForm"
+                (ngSubmit)="onSubmit()"
+                autocomplete="off"
                 class="form-horizontal form-material" id="loginform" action="index.html">
                 <a href="javascript:void(0)" class="text-center db"><img src="../assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
                 <h3 class="box-title m-t-40 m-b-0">Register Now</h3><small>Create your account and enjoy</small>
                 <div class="form-group m-t-20">
                     <div class="col-xs-12">
-                        <input class="form-control" type="text" required="" placeholder="Name">
+                        <input
+                            formControlName="name"
+                            class="form-control"
+                            type="text"
+                            placeholder="Name"
+                            [ngClass]="{'is-invalid': isInvalidName}"
+                        >
+                        <div class="invalid-feedback">
+                            Name not valid.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control" type="text" required="" placeholder="Email">
+                        <input
+                            formControlName="email"
+                            class="form-control"
+                            type="text"
+                            placeholder="Email"
+                            [ngClass]="{'is-invalid': isInvalidEmail}"
+                        >
+                        <div class="invalid-feedback">
+                            Email not valid.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control" type="password" required="" placeholder="Password">
+                        <input
+                            formControlName="password"
+                            class="form-control"
+                            type="password"
+                            placeholder="Password"
+                            [ngClass]="{'is-invalid': isInvalidPassword}"
+                        >
+                        <div class="invalid-feedback">
+                            Password is required.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class="form-control" type="password" required="" placeholder="Confirm Password">
+                        <input
+                            formControlName="password2"
+                            class="form-control"
+                            type="password"
+                            placeholder="Confirm Password"
+                            [ngClass]="{'is-invalid': isInvalidPassword2}"
+                        >
+                        <div class="invalid-feedback">
+                            <ng-container *ngIf="isSamePasswords; else elseTemplate">
+                                The passwords must be the same.
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                Please confirm your password.
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary p-t-0">
-                            <input id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+                            <input formControlName="agree" id="checkbox-signup" type="checkbox">
+                            <label for="checkbox-signup" class="is-invalid"> I agree to all Terms</label>
+                            <div *ngIf="isInvalidAgree" class="text-danger">
+                                Please acept the terms
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -45,6 +91,11 @@
                         <p>Already have an account? <a routerLink="/login" class="text-info m-l-5"><b>Sign In</b></a></p>
                     </div>
                 </div>
+                <!-- <div>
+                    <pre>{{getForm.value | json}}</pre>
+                    <pre>{{getForm.status}}</pre>
+                    <pre>{{ getForm.errors | json }}</pre>
+                </div> -->
             </form>
         </div>
     </div>
