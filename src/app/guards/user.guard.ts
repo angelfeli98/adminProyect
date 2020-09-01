@@ -20,7 +20,7 @@ export class UserGuard implements CanActivate{
         state: RouterStateSnapshot
     ): Observable<boolean>{
         return this.userService.validateToken().pipe(
-            catchError( selector => of(false)),
+            catchError( selector =>  of(false)),
             tap(res => (!!!res)? this.router.navigateByUrl('/login'): true),
         );
     }

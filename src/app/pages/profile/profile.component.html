@@ -1,0 +1,76 @@
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Profile account</h4>
+                <form
+                    [formGroup]="getFormData"
+                    (ngSubmit)="onSubmit()"
+                    class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">User Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input
+                                formControlName="name"
+                                type="text"
+                                class="form-control"
+                                id="exampleInputuname"
+                                placeholder="Enter name"
+                                [ngClass]="{'is-invalid': invalidUser}"
+                            ><br>
+                        </div>
+                        <div *ngIf="invalidUser" class="text-danger mt-1"> Name is required </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input
+                                formControlName="email"
+                                type="email"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                placeholder="Enter email"
+                                [ngClass]="{'is-invalid': invalidEmail}"
+                            ><br>
+                        </div>
+                        <div *ngIf="invalidEmail" class="text-danger mt-1"> Email invalid </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"> Save</i></button>
+                    <button type="button" (click)="changeValues()" class="btn btn-danger waves-effect waves-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Profile Image</h4>
+                <div class="img-container text-center">
+                    <img width="200px" height="200px" [src]="getImage | safeImg" class="img-fluid mb-4" alt="user image">
+                </div>
+                <form
+                    [formGroup]="getFormImage"
+                    (ngSubmit)="submitImage(files.files)"
+                >
+                    <input
+                        class="mb-4"
+                        #files
+                        formControlName="file"
+                        type="file"
+                        (change)="changePhoto($event.target.files)"
+                    >
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"> Save Image</i>
+                    </button>
+                    <button type="button" (click)="resetImage = undefined" class="btn btn-danger">
+                        Cancel
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

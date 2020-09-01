@@ -1,5 +1,6 @@
 
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -13,6 +14,8 @@ import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SafeImgPipe } from '../pipes/safeImg.pipe';
 
 @NgModule({
     declarations: [
@@ -22,13 +25,16 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         PagesComponent,
         AccountSettingsComponent,
         PromisesComponent,
-        RxjsComponent
+        RxjsComponent,
+        ProfileComponent,
+        SafeImgPipe
     ],
     imports:[
         CommonModule,
         AppRoutingModule,
         SharedModule,
-        ComponentModule
+        ComponentModule,
+        ReactiveFormsModule
     ],
     exports:[
         DashBoardComponent,
@@ -37,7 +43,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         PagesComponent,
         AccountSettingsComponent,
         PromisesComponent,
-        RxjsComponent
+        RxjsComponent,
+        ProfileComponent
     ]
 })
 export class PagesModule{}

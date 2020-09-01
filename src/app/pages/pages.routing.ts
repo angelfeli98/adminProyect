@@ -13,6 +13,7 @@ import { CharOneComponent } from './char-one/char-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const PAGES_ROUTES: Routes = [
@@ -25,7 +26,8 @@ const PAGES_ROUTES: Routes = [
             { path: 'charOne', component: CharOneComponent, data: { title: 'Chars' } },
             { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account service' } },
             { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
-            { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } }
+            { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
+            { path: 'profile', component: ProfileComponent, data: { title: 'Profile' }}
         ],
         canActivate: [ UserGuard ]
     }

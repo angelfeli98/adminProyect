@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         localStorage.removeItem('email');
       this.userService.loginUser({email, password})
                       .subscribe(res => {
-                        this.router.navigateByUrl('dashboard');
+                        this.router.navigate(['']);
                       }, error => this.alert.makeNotification('Ops...', 'error', error.error.error.message))
     }
   }
@@ -75,8 +75,8 @@ export class LoginComponent implements OnInit {
       'height': 50,
       'longtitle': true,
       'theme': 'dark',
-      'onsuccess': this.onSuccess,
-      'onfailure': this.onFailure,
+      'onsuccess': this.ngZone.run(() =>  this.onSuccess),
+      'onfailure': this.ngZone.run(() => this.onFailure),
     });
   }
 
