@@ -23,14 +23,14 @@ export class FileService{
         this.user = this.userService.user;
     }
 
-    public uploadImge = (file: File, collection: 'user' | 'doctor' | 'hospital', id: string): Observable<any> => {
+    public uploadImge = (file: File, collection: 'user' | 'doctor' | 'hospital', id: string, self: boolean = true): Observable<any> => {
         if(!!!file.type.includes('image'))
             return of();
         const body = new FormData();
         body.append('file', file, file.name);
         const headers = new HttpHeaders({'x-token': localStorage.getItem('token')});
         return this.http.post(`${this.url}/file/upload/${collection}/${id}`, body, {headers})
-                        .pipe( tap(res => (collection == 'user')?this.user.setData = res.result: '') )
+                        .pipe( tap(res => (collection == 'user' && self)?this.user.setData = res.result: '') )
     }
 
     private makeBody = (data: Object): string =>  JSON.stringify(data);

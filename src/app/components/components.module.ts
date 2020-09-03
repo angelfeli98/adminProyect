@@ -5,19 +5,25 @@ import { CounterComponent } from './counter/counter.component';
 import { CharDoughnutComponent } from './char-doughnut/char-doughnut.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { ImageModalComponent } from './image-modal/image-modal.component';
+import { SafeImgPipe } from '../pipes/safeImg.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
         CounterComponent,
-        CharDoughnutComponent
+        CharDoughnutComponent,
+        ImageModalComponent
     ],
     imports: [
         CommonModule,
-        ChartsModule
+        ChartsModule,
+        PipesModule
     ],
     exports: [
         CounterComponent,
-        CharDoughnutComponent
+        CharDoughnutComponent,
+        ImageModalComponent
     ]
 })
 export class ComponentModule{}

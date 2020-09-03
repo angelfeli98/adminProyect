@@ -1,0 +1,28 @@
+
+<div *ngIf="getData.show" class="modal-image animated fadeIn fast">
+    <div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" Style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose an image</h4>
+                    <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <img [src]="getImg | safeImg" [alt]="getData.user.name" width="200" height="200">
+                    </div>
+                    <input
+                        #file
+                        type="file"
+                        (change)="showNewImage(file.files)"
+                    >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="closeModal()" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" (click)="updateImg(file.files)" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

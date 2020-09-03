@@ -28,11 +28,31 @@ export class UserModel{
     }
 
     public get getImg(): string{
-        const pattern = new RegExp('https')
+        const pattern = new RegExp('https');
+        const pattern2 = new RegExp('data');
         if(pattern.test(this.img))
             return this.img;
         else if(this.img)
             return `${url}/file/load/user/${this.img}`;
+        else if(pattern2.test(this.img))
+            return this.img;
         return `${url}/file/load/user/no-img.jpg`;
+    }
+
+    public get getRole(): string{
+        const pattern = new RegExp('USER');
+        if(pattern.test(this.role))
+            return 'User';
+        return 'ADMIN';
+    }
+
+    public get getData(): Object{
+        return {
+            name: this.name,
+            email: this.email,
+            google: this.google,
+            role: this.role,
+            img: this.img,
+        }
     }
 }

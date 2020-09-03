@@ -82,12 +82,13 @@ export class UserService{
                         .pipe( map(response => localStorage.setItem('token', response['token'])));
     }
 
-    public updateUser = (data: Object): Observable<any> => {
+    public updateUser = (data: Object, self: boolean = true, id?: string): Observable<any> => {
         const body = this.makeBody(data);
+        const ids = self?this.user.id:id;
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({'Content-Type': 'application/json', 'x-token': token});
-        return this.http.put(`${this.url}/user/updateUser/${this.user.id}`, body, {headers})
-                        .pipe( tap(response =>  this.user.setData = response['updatedUser']));
+        return this.http.put(`${this.url}/user/updateUser/${ids}`, body, {headers})
+                        .pipe( tap(response => self?this.user.setData = response['updatedUser']: ''));
     }
 
     private makeBody = (data: Object): string => {
@@ -98,5 +99,25 @@ export class UserService{
         return new HttpHeaders({
             'Content-Type': 'application/json'
         })
+    }
+
+    public getUsers = (page: number = 1, limit: number = 5): Observable<{users: UserModel[], results: number}> => {
+        const token = localStorage.getItem('token') || '';
+        const headers = new HttpHeaders({'Content-Type': 'application/json', 'x-token': token})
+        return this.http.get(`${this.url}/user/getUsers?page=${page}&limit=${limit}`, {headers})
+                        .pipe( map( response => {
+                            const results  = response['results'];
+                            const users = response['users'].map( (user: any) => {
+                                const userM = new UserModel('', '', '');
+                                userM.setData = user;
+                                return userM
+                            })
+                            return { users, results };
+                        }))
+    }
+
+    public deleteUser = (id: string): Observable<any> => {
+        const headers = new HttpHeaders({'Content-Type': 'application/json', 'x-token': localStorage.getItem('token')})
+        return this.http.delete(`${this.url}/user/deleteUser/${id}`, {headers});
     }
 }

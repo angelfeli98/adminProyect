@@ -16,6 +16,8 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SafeImgPipe } from '../pipes/safeImg.pipe';
+import { MaintenanceModule } from './maintenance/maintenance.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -27,14 +29,15 @@ import { SafeImgPipe } from '../pipes/safeImg.pipe';
         PromisesComponent,
         RxjsComponent,
         ProfileComponent,
-        SafeImgPipe
     ],
     imports:[
         CommonModule,
         AppRoutingModule,
         SharedModule,
         ComponentModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MaintenanceModule,
+        PipesModule
     ],
     exports:[
         DashBoardComponent,

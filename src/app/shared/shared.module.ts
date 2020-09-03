@@ -7,7 +7,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { EmailShortPipe } from '../pipes/emial.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -15,11 +15,11 @@ import { EmailShortPipe } from '../pipes/emial.pipe';
         FooterComponent,
         HeaderComponent,
         SidebarComponent,
-        EmailShortPipe
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        PipesModule
     ],
     exports: [
         BreadcrumbsComponent,

@@ -31,6 +31,24 @@ export class SidebatService{
                         url: 'rxjs'
                     }
                 ]
+            },
+            {
+                title: 'Settings',
+                icon: 'mdi mdi-folder-lock-open',
+                submenu: [
+                    {
+                        title: 'Users',
+                        url: 'users'
+                    },
+                    {
+                        title: 'Doctors',
+                        url: 'doctors'
+                    },
+                    {
+                        title: 'Hospital',
+                        url: 'hospitals'
+                    }
+                ]
             }
         ]
     }

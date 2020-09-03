@@ -14,6 +14,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserComponent } from './maintenance/user/user.component';
+import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 
 
 const PAGES_ROUTES: Routes = [
@@ -27,7 +30,11 @@ const PAGES_ROUTES: Routes = [
             { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account service' } },
             { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
-            { path: 'profile', component: ProfileComponent, data: { title: 'Profile' }}
+            { path: 'profile', component: ProfileComponent, data: { title: 'Profile' }},
+            //maintenance
+            { path: 'users', component: UserComponent, data: {title: 'Users maintenance'}},
+            { path: 'hospitals', component: HospitalsComponent, data: {title: 'Hospitals maintenance'}},
+            { path: 'doctors', component: DoctorsComponent, data: {title: 'Doctors maintenance'}}
         ],
         canActivate: [ UserGuard ]
     }
