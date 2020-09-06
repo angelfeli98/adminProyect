@@ -28,7 +28,7 @@
 <div *ngIf="!!!getLodin" class="row animate fadeIn fast">
     <div class="col">
         <div class="card-body">
-            <h4 class="card-title">Register users</h4>
+            <h4 class="card-title">Register users <span>( {{ ((page - 1) * 5) + 1 }} - {{(results * (page* 5 )) > 1?(page*5):(results)}} of {{results}})</span></h4>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -43,10 +43,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let user of getUsers; let i = index">
-                            <td class="">
+                            <td class="text-center">
                                 <img
                                     [src]="user.getImg | safeImg"
-                                    class="img-fluid pointer"
+                                    class="pointer"
                                     alt="user image"
                                     width="100"
                                     height="100"

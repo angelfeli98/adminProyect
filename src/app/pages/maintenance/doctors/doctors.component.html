@@ -1,1 +1,82 @@
-<p>doctors works!</p>
+
+<div class="row animated fadeIn fast">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <input
+                    #field
+                    class="form-control"
+                    type="text"
+                    placeholder="Search a doctor"
+                    (keyup)="searchDoctor(field.value)"
+                >
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" class="row animated fadeIn fast">
+    <div class="col">
+        <div class="alert-info text-center">
+            <div class="alert-heading text-center">
+                Loading...
+            </div>
+            <i class="fa fa-spin fa-3x fa-refresh"></i>
+            <p class="text-center">Please wait a moment</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="!!!loading" class="animated fadeIn fast">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-8">
+                        <h4 class="card-title"> Doctors <span class="card-subtitle">( {{ (page * 5) - 4 }} - {{ ((results/(page * 5)) > 1)?(page * 5):results}} of {{results}} )</span> </h4>
+                    </div>
+                    <div class="col text-right">
+                        <button
+                            class="btn btn-primary"
+                            [routerLink]="['/dashboard/doctor-info/new']"
+                        >
+                            <i class="fa fa-hospital-o"> New Doctor </i>
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th class="text-nowrap">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doctor of getDoctors; let i = index">
+                            <td class="text-center">
+                                <img
+                                    height="100"
+                                    width="100"
+                                    class="pointer"
+                                    (click)="openModal(doctor)"
+                                    [src]="doctor.img | img:'hospital'"
+                                    alt="{{doctor.name}}"
+                                >
+                            </td>
+                            <td>
+                                <p>{{ doctor.name }}</p>
+                            </td>
+                            <td class="text-nowrap text-center">
+                                <a class="pointer" [routerLink]="['/dashboard/doctor-info', doctor.id]"  data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a class="pointer" (click)="deleteDoctor(doctor.id, i)" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button (click)="pageDoctors(false)" *ngIf="page > 1" class="btn btn-outline-inverse m-2"> Prev </button>
+                    <button (click)="pageDoctors(true)" *ngIf="(results/(page * 5)) > 1" class="btn btn-outline-primary m-2"> Next </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

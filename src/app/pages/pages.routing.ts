@@ -17,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './maintenance/user/user.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { UserInfoComponent } from './maintenance/doctors/user-info.component';
 
 
 const PAGES_ROUTES: Routes = [
@@ -34,7 +35,8 @@ const PAGES_ROUTES: Routes = [
             //maintenance
             { path: 'users', component: UserComponent, data: {title: 'Users maintenance'}},
             { path: 'hospitals', component: HospitalsComponent, data: {title: 'Hospitals maintenance'}},
-            { path: 'doctors', component: DoctorsComponent, data: {title: 'Doctors maintenance'}}
+            { path: 'doctors', component: DoctorsComponent, data: {title: 'Doctors maintenance'}},
+            { path: 'doctor-info/:id', component: UserInfoComponent, data: {title: 'Doctor Info' } }
         ],
         canActivate: [ UserGuard ]
     }

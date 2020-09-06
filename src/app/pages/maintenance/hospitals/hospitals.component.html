@@ -1,1 +1,84 @@
-<p>hospitals works!</p>
+
+<div class="row animated fadeIn fast">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <input
+                    #field
+                    class="form-control"
+                    type="text"
+                    placeholder="Search a hospital"
+                    (keyup)="searchHospital(field.value)"
+                >
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="getLoading" class="row animated fadeIn fast">
+    <div class="col">
+        <div class="alert-info text-center">
+            <div class="alert-heading text-center">
+                Loading...
+            </div>
+            <i class="fa fa-spin fa-3x fa-refresh"></i>
+            <p class="text-center">Please wait a moment</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="!!!getLoading" class="animated fadeIn fast">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-8">
+                        <h4 class="card-title"> Hospitals <span class="card-subtitle">( {{getHospitals.length}} )</span> </h4>
+                    </div>
+                    <div class="col text-right">
+                        <button
+                            class="btn btn-primary"
+                            (click)="newHospital()"
+                        >
+                            <i class="fa fa-hospital-o"> New Hospital</i>
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th class="text-nowrap">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of getHospitals; let i = index">
+                            <td class="text-center">
+                                <img
+                                    height="100"
+                                    width="100"
+                                    class="pointer"
+                                    (click)="openModal(hospital)"
+                                    [src]="hospital.img | img:'hospital'"
+                                    alt="{{hospital.name}}"
+                                >
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    placeholder="name"
+                                    class="form-control"
+                                    [value]="hospital.name"
+                                    #name
+                                >
+                            </td>
+                            <td class="text-nowrap text-center">
+                                <a class="pointer" (click)="saveChanges(hospital, name.value)" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a class="pointer" (click)="deleteHospital(hospital, i)" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

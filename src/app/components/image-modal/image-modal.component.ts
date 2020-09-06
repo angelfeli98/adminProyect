@@ -33,6 +33,7 @@ export class ImageModalComponent implements OnInit {
 
   public closeModal = (): void => {
     this.data.show = false;
+    this.newPhoto = undefined;
   }
 
   public showNewImage = async(files: FileList): Promise<any> => {
@@ -63,7 +64,7 @@ export class ImageModalComponent implements OnInit {
   }
 
   public get getImg(): string{
-    return this.newPhoto || this.data.user.getImg;
+    return this.newPhoto || this.data.user.img;
   }
 
 }

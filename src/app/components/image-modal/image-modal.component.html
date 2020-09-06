@@ -9,7 +9,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-4">
-                        <img [src]="getImg | safeImg" [alt]="getData.user.name" width="200" height="200">
+                        <img
+                            [src]="getImg | img:getData.type | safeImg "
+                            [alt]="getData.user.name"
+                            width="200"
+                            height="200"
+                        >
                     </div>
                     <input
                         #file
