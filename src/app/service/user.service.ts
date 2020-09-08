@@ -34,6 +34,7 @@ export class UserService{
         const headers = new HttpHeaders({'Content-Type': 'application/json', 'x-token': token})
         return this.http.post(`${this.url}/auth/newToken`,{},{headers})
                         .pipe(
+                            tap((res: any) => localStorage.setItem('menu', JSON.stringify(res.menu))),
                             map( response =>{
                             localStorage.setItem('token', response['token']);
                             this.user.setData = response['user'];
@@ -43,6 +44,7 @@ export class UserService{
 
     public signOut = (): void => {
         localStorage.removeItem('token');
+        localStorage.removeItem('menu');
         this.signOutGoogle();
     }
 
@@ -72,14 +74,18 @@ export class UserService{
         const headers = this.makeHeaders();
         this.user = new UserModel('', '', '');
         return this.http.post(`${this.url}/auth/login`, body, {headers})
-                        .pipe( map(response => localStorage.setItem('token', response['token'])))
+                        .pipe(
+                            tap((res: any) => localStorage.setItem('menu', JSON.stringify(res.menu))),
+                            map(response => localStorage.setItem('token', response['token'])))
     }
 
     public googleLoging = (token: string): Observable<any> => {
         this.user = new UserModel('', '', '');
         const headers = new HttpHeaders({'Content-Type': 'application/json', 'g-token': token})
         return this.http.post(`${this.url}/auth/loginGoogle`, {}, {headers})
-                        .pipe( map(response => localStorage.setItem('token', response['token'])));
+                        .pipe(
+                            tap((res: any) => localStorage.setItem('menu', JSON.stringify(res.menu))),
+                            map(response => localStorage.setItem('token', response['token'])));
     }
 
     public updateUser = (data: Object, self: boolean = true, id?: string): Observable<any> => {

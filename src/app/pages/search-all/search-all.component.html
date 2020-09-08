@@ -1,0 +1,114 @@
+
+<div class="animated fadeIn fast text-center">
+    <h2 *ngIf="!!!data">You can search now</h2>
+    <div *ngIf="data">
+        <div class="row">
+            <div class="col-4">
+                <div class="card text-center">
+                    <h3 class="card-title">User</h3>
+                    <div *ngIf="data.users.length == 0" class="alert-info text-center">
+                        <h2> Not Results </h2>
+                        <i class="fa fa-info fa-3x"></i>
+                    </div>
+                    <div *ngIf="data.users.length != 0" class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of data.users; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>
+                                        <img
+                                            class="pointer"
+                                            width="100"
+                                            height="100"
+                                            [src]="user.img | img | safeImg"
+                                            [alt]="user.name"
+                                        >
+                                    </td>
+                                    <td>{{ user.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-center">
+                    <h3 class="card-title">Hospital</h3>
+                    <div *ngIf="data.hospitals.length == 0" class="alert-info text-center">
+                        <h2> Not Results </h2>
+                        <i class="fa fa-info fa-3x"></i>
+                    </div>
+                    <div *ngIf="data.hospitals.length != 0" class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let hospital of data.hospitals; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>
+                                        <img
+                                            class="pointer"
+                                            width="100"
+                                            height="100"
+                                            [src]="hospital.img | img | safeImg"
+                                            [alt]="hospital.name"
+                                        >
+                                    </td>
+                                    <td>{{ hospital.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-center">
+                    <h3 class="card-title">Doctor</h3>
+                    <div *ngIf="data.doctors.length == 0" class="alert-info text-center">
+                        <h2> Not Results </h2>
+                        <i class="fa fa-info fa-3x"></i>
+                    </div>
+                    <div class="table-responsive">
+                        <table *ngIf="data.doctors.length != 0" class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let doctor of data.doctors; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>
+                                        <img
+                                            class="pointer"
+                                            width="100"
+                                            height="100"
+                                            [src]="doctor.img | img | safeImg"
+                                            [alt]="doctor.name"
+                                            (click)="navigate(doctor.id, 'doctor-info')"
+                                        >
+                                    </td>
+                                    <td>{{ doctor.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

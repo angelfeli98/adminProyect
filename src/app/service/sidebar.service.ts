@@ -1,5 +1,9 @@
 
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -7,53 +11,15 @@ import { Injectable } from '@angular/core';
 export class SidebatService{
 
     private menu: any[];
+    private url: string;
 
-    constructor(){
-        this.menu = [
-            {
-                title: 'Home',
-                icon: 'mdi mdi-gauge',
-                submenu: [
-                    {
-                        title: 'Progress',
-                        url: 'progress'
-                    },
-                    {
-                        title: 'Chars',
-                        url: 'charOne'
-                    },
-                    {
-                        title: 'Promises',
-                        url: 'promises'
-                    },
-                    {
-                        title: 'Rxjs',
-                        url: 'rxjs'
-                    }
-                ]
-            },
-            {
-                title: 'Settings',
-                icon: 'mdi mdi-folder-lock-open',
-                submenu: [
-                    {
-                        title: 'Users',
-                        url: 'users'
-                    },
-                    {
-                        title: 'Doctors',
-                        url: 'doctors'
-                    },
-                    {
-                        title: 'Hospital',
-                        url: 'hospitals'
-                    }
-                ]
-            }
-        ]
+    constructor(
+        private http: HttpClient
+    ){
+        this.url = environment.url;
     }
 
     public get getMenu(): any[]{
-        return this.menu;
+        return JSON.parse(localStorage.getItem('menu'));
     }
 }

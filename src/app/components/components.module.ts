@@ -13,7 +13,7 @@ import { PipesModule } from '../pipes/pipes.module';
     declarations: [
         CounterComponent,
         CharDoughnutComponent,
-        ImageModalComponent
+        ImageModalComponent,
     ],
     imports: [
         CommonModule,
@@ -23,7 +23,7 @@ import { PipesModule } from '../pipes/pipes.module';
     exports: [
         CounterComponent,
         CharDoughnutComponent,
-        ImageModalComponent
+        ImageModalComponent,
     ]
 })
 export class ComponentModule{}

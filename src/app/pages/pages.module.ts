@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SafeImgPipe } from '../pipes/safeImg.pipe';
 import { MaintenanceModule } from './maintenance/maintenance.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { SearchAllComponent } from './search-all/search-all.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { PipesModule } from '../pipes/pipes.module';
         PromisesComponent,
         RxjsComponent,
         ProfileComponent,
+        SearchAllComponent,
     ],
     imports:[
         CommonModule,
@@ -47,7 +49,8 @@ import { PipesModule } from '../pipes/pipes.module';
         AccountSettingsComponent,
         PromisesComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        SearchAllComponent
     ]
 })
 export class PagesModule{}

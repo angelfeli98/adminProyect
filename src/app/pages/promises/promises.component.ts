@@ -16,8 +16,6 @@ export class PromisesComponent implements OnInit{
         //         .catch(console.log)
 
         this.getUsuarios().then(users => console.log(users['data']))
-
-        console.log('End ngOnInit')
     }
 
     private getUsuarios = (): Promise<string> =>{
